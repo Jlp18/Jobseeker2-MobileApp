@@ -1,0 +1,175 @@
+.search{
+	position:absolute;
+	display: block;
+	background-color: #007AFF;
+	height:65px;
+	width: 100%;
+	margin-right:20px;
+	z-index: 1;
+}
+
+.search [type="text"]{
+	width: 90%;
+	margin-top: 6px;
+	margin-left: 20px;
+	font-size: 16px;
+	border-radius:20px;
+	color: #555;
+	padding-right: 0;
+}
+
+.search p{
+	position: relative;
+	margin-bottom: 0;
+}
+
+.search .iconfont{
+	position: absolute;
+	right:7%;
+	top:14px;
+	width:30px;
+	height:30px; 
+	font-size: 25px;
+	z-index: 2;
+}
+
+.table{
+	display:flex;
+	background-color:#ccc;
+	margin-top:0;
+	margin-bottom: 0;
+	padding-top: 15px;
+}
+
+.table dt{
+	flex-grow: 1;
+	text-align: center;
+}
+
+.table dd{
+    margin-left: 0;
+    padding-bottom: 15px;
+}
+
+.table dd .line{
+	border-left: solid 1px #555;
+	height: 20px;
+}
+
+.mui-scroll-wrapper{
+	display: block;
+	position: absolute;
+	z-index:0;
+	top:155px;
+	overflow-y: scroll;
+}
+
+.list{
+	background-color: red;
+	margin-bottom:10px;
+	height: 50px;
+}
+
+.mui-pull-bottom-pocket{
+	height:0 !important;
+}
+
+.mui-scroll-wrapper dl{
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+.mui-scroll-wrapper dt{
+	background-color: #fff;
+	display: flex;
+	padding: 15px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.mui-scroll-wrapper .square{
+	width: 70px;
+	height: 70px;
+	background-color: #ccc;
+	font-size: 30px;
+	line-height: 70px;
+	text-align: center;
+	color: #333;
+	margin-right: 15px;
+}
+
+.mui-scroll-wrapper ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-size: 15px;
+	color: #333;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.mui-scroll-wrapper li{
+	overflow: hidden;
+}
+
+.mui-scroll-wrapper .job{
+	float: left;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.mui-scroll-wrapper .date{
+	float: right;
+	color: #555;
+}
+
+.mui-scroll-wrapper .company{
+	float: left;
+	color: #555;
+}
+
+.mui-scroll-wrapper .salary{
+	float: right;
+	color: red;
+}
+
+.mui-scroll-wrapper .welfare{
+	color: #555;
+	font-size: 14px;
+	margin-right: 5px;
+}
+
+.mui-scroll-wrapper .education{
+	color: #555;
+	font-size: 14px;
+	margin-right: 5px;
+}
+
+.mui-scroll-wrapper .city{
+	color: #555;
+	font-size: 14px;
+	margin-right: 5px;
+}
+
+.mui-scroll-wrapper .iconfont{
+	color: #999;
+	font-size: 16px;
+}
+
+.mui-scroll-wrapper .tag{
+	font-size: 12px;
+	background-color: #31BD80;
+	color: #fff;
+	position: absolute;
+	bottom: 0;
+	width: 50px;
+	right: 0;
+	text-align: center;
+	height: 26px;
+	line-height: 26px;
+}
+
+.table .active{
+	border-bottom: solid 2px #33ccff;
+
+}

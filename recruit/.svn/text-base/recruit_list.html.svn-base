@@ -1,0 +1,290 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="recruit_list.css" />	
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">企业招聘</h1>
+		</header>
+		
+		<div id="app" class="mui-content">
+			<div class="search">
+				<p>
+					<input type="text" v-model="condition" v-on:input ="inputFunc" placeholder="工作 /企业名称 /地点" />
+					<i class="iconfont icon-search" v-tap="{method:searchList}"></i>
+				</p>
+				<dl class="table">
+					<dt :class="{active:showPanel=='default'}" v-tap="{method:showDefaultPanel}">默认排序</dt>
+				    <dd>
+						<div class="line"></div>
+				 	</dd>
+					<dt :class="{active:showPanel=='salarymin'}" v-tap="{method:showSalaryMinPanel}">最低月薪</dt>
+					<dd>
+						<div class="line"></div>
+					</dd>
+					<dt :class="{active:showPanel=='salarymax'}" v-tap="{method:showSalaryMaxPanel}">最高月薪</dt>
+					<dd>
+						<div class="line"></div>
+					</dd>
+					<dt :class="{active:showPanel=='new'}" v-tap="{method:showNewPanel}">最新招聘</dt>
+				</dl>
+			</div>
+			
+			<div id="refreshContainer"  class="mui-scroll-wrapper">
+				<div id="scroller">
+					<div class="defaultPanel" v-show="showPanel=='default'"> 	
+						<div v-if="condition==''">
+						<dl v-if="recruit1!=null&&recruit1.length>0">
+							<dt name="recruit1"  v-for="one in recruit1" v-tap="{method:getrecruitid}" :data-id="one.id" >
+								<div class="square">前</div>
+								<ul>
+	    							<li>
+	    								<span class="job">{{one.job}}</span>
+	    								<span class="date">{{one.date}}</span>
+	    							</li>
+	    							<li>
+	    								<span class="company">{{one.name}}</span>
+	    								<span class="salary">{{one.salary}}</span>
+	    							</li>
+	    							<li>
+	    								<i class="iconfont icon-coordinates_fill"></i>
+	    								<span class="city">{{one.city}}</span>
+	    								<i class="iconfont icon-people_fill"></i>
+	    								<span class="education">{{one.education}}</span>
+	    								<i class="iconfont icon-transaction_fill"></i>
+	    								<span class="welfare">{{one.welfare|welfareFilter}}</span>
+	    							</li>
+	    					</ul>
+	    					<span class="tag" v-if="one.sended==1">已投递</span>
+							</dt>
+						</dl>
+						</div>
+						
+						<div v-if="condition!=''">
+							<dl v-if="recruit5!=null&&recruit5.length>0">
+							<dt name="recruit5"  v-for="one in recruit5" v-tap="{method:getrecruitid}" :data-id="one.id">
+								<div class="square">前</div>
+								<ul>
+	    							<li>
+	    								<span class="job">{{one.job}}</span>
+	    								<span class="date">{{one.date}}</span>
+	    							</li>
+	    							<li>
+	    								<span class="company">{{one.name}}</span>
+	    								<span class="salary">{{one.salary}}</span>
+	    							</li>
+	    							<li>
+	    								<i class="iconfont icon-coordinates_fill"></i>
+	    								<span class="city">{{one.city}}</span>
+	    								<i class="iconfont icon-people_fill"></i>
+	    								<span class="education">{{one.education}}</span>
+	    								<i class="iconfont icon-transaction_fill"></i>
+	    								<span class="welfare">{{one.welfare|welfareFilter}}</span>
+	    							</li>
+	    					</ul>
+	    					<span class="tag" v-if="one.sended==1">已投递</span>
+							</dt>
+						</dl>
+						</div>
+						
+					</div>
+					
+					<div class="salaryminPanel" v-show="showPanel=='salarymin'">
+						<div v-if="condition==''">
+						<dl v-if="recruit2!=null&&recruit2.length>0">
+							<dt name="recruit2"  v-for="one in recruit2" v-tap="{method:getrecruitid}" :data-id="one.id">
+								<div class="square">前</div>
+								<ul>
+	    							<li>
+	    								<span class="job">{{one.job}}</span>
+	    								<span class="date">{{one.date}}</span>
+	    							</li>
+	    							<li>
+	    								<span class="company">{{one.name}}</span>
+	    								<span class="salary">{{one.salary}}</span>
+	    							</li>
+	    							<li>
+	    								<i class="iconfont icon-coordinates_fill"></i>
+	    								<span class="city">{{one.city}}</span>
+	    								<i class="iconfont icon-people_fill"></i>
+	    								<span class="education">{{one.education}}</span>
+	    								<i class="iconfont icon-transaction_fill"></i>
+	    								<span class="welfare">{{one.welfare|welfareFilter}}</span>
+	    							</li>
+	    					</ul>
+	    					<span class="tag" v-if="one.sended==1">已投递</span>
+							</dt>
+						</dl>
+						</div>
+					
+						<div v-if="condition!=''">
+							<dl v-if="recruit6!=null&&recruit6.length>0">
+							<dt name="recruit6"  v-for="one in recruit6" v-tap="{method:getrecruitid}" :data-id="one.id">
+								<div class="square">前</div>
+								<ul>
+	    							<li>
+	    								<span class="job">{{one.job}}</span>
+	    								<span class="date">{{one.date}}</span>
+	    							</li>
+	    							<li>
+	    								<span class="company">{{one.name}}</span>
+	    								<span class="salary">{{one.salary}}</span>
+	    							</li>
+	    							<li>
+	    								<i class="iconfont icon-coordinates_fill"></i>
+	    								<span class="city">{{one.city}}</span>
+	    								<i class="iconfont icon-people_fill"></i>
+	    								<span class="education">{{one.education}}</span>
+	    								<i class="iconfont icon-transaction_fill"></i>
+	    								<span class="welfare">{{one.welfare|welfareFilter}}</span>
+	    							</li>
+	    					</ul>
+	    					<span class="tag" v-if="one.sended==1">已投递</span>
+							</dt>
+						</dl>
+						</div>
+					
+					</div>
+					
+					<div class="salarymaxPanel" v-show="showPanel=='salarymax'">
+						<div v-if="condition==''">
+						<dl v-if="recruit3!=null&&recruit3.length>0">
+							<dt name="recruit3"  v-for="one in recruit3" v-tap="{method:getrecruitid}" :data-id="one.id">
+								<div class="square">前</div>
+								<ul>
+	    							<li>
+	    								<span class="job">{{one.job}}</span>
+	    								<span class="date">{{one.date}}</span>
+	    							</li>
+	    							<li>
+	    								<span class="company">{{one.name}}</span>
+	    								<span class="salary">{{one.salary}}</span>
+	    							</li>
+	    							<li>
+	    								<i class="iconfont icon-coordinates_fill"></i>
+	    								<span class="city">{{one.city}}</span>
+	    								<i class="iconfont icon-people_fill"></i>
+	    								<span class="education">{{one.education}}</span>
+	    								<i class="iconfont icon-transaction_fill"></i>
+	    								<span class="welfare">{{one.welfare|welfareFilter}}</span>
+	    							</li>
+	    					</ul>
+	    					<span class="tag" v-if="one.sended==1">已投递</span>
+							</dt>
+						</dl>
+						</div>
+					
+						<div v-if="condition!=''">
+							<dl v-if="recruit7!=null&&recruit7.length>0">
+							<dt name="recruit7"  v-for="one in recruit7" v-tap="{method:getrecruitid}" :data-id="one.id">
+								<div class="square">前</div>
+								<ul>
+	    							<li>
+	    								<span class="job">{{one.job}}</span>
+	    								<span class="date">{{one.date}}</span>
+	    							</li>
+	    							<li>
+	    								<span class="company">{{one.name}}</span>
+	    								<span class="salary">{{one.salary}}</span>
+	    							</li>
+	    							<li>
+	    								<i class="iconfont icon-coordinates_fill"></i>
+	    								<span class="city">{{one.city}}</span>
+	    								<i class="iconfont icon-people_fill"></i>
+	    								<span class="education">{{one.education}}</span>
+	    								<i class="iconfont icon-transaction_fill"></i>
+	    								<span class="welfare">{{one.welfare|welfareFilter}}</span>
+	    							</li>
+	    					</ul>
+	    					<span class="tag" v-if="one.sended==1">已投递</span>
+							</dt>
+						</dl>
+						</div>
+					
+					</div>
+					
+					<div class="newPanel" v-show="showPanel=='new'"> 
+						<div v-if="condition==''">
+						<dl v-if="recruit4!=null&&recruit4.length>0">
+							<dt name="recruit4"  v-for="one in recruit4" v-tap="{method:getrecruitid}" :data-id="one.id">
+								<div class="square">前</div>
+								<ul>
+	    							<li>
+	    								<span class="job">{{one.job}}</span>
+	    								<span class="date">{{one.date}}</span>
+	    							</li>
+	    							<li>
+	    								<span class="company">{{one.name}}</span>
+	    								<span class="salary">{{one.salary}}</span>
+	    							</li>
+	    							<li>
+	    								<i class="iconfont icon-coordinates_fill"></i>
+	    								<span class="city">{{one.city}}</span>
+	    								<i class="iconfont icon-people_fill"></i>
+	    								<span class="education">{{one.education}}</span>
+	    								<i class="iconfont icon-transaction_fill"></i>
+	    								<span class="welfare">{{one.welfare|welfareFilter}}</span>
+	    							</li>
+	    					</ul>
+	    					<span class="tag" v-if="one.sended==1">已投递</span>
+							</dt>
+						</dl>
+						</div>
+						
+						<div v-if="condition!=''">
+							<dl v-if="recruit8!=null&&recruit8.length>0">
+							<dt name="recruit8"  v-for="one in recruit8" v-tap="{method:getrecruitid}" :data-id="one.id">
+								<div class="square">前</div>
+								<ul>
+	    							<li>
+	    								<span class="job">{{one.job}}</span>
+	    								<span class="date">{{one.date}}</span>
+	    							</li>
+	    							<li>
+	    								<span class="company">{{one.name}}</span>
+	    								<span class="salary">{{one.salary}}</span>
+	    							</li>
+	    							<li>
+	    								<i class="iconfont icon-coordinates_fill"></i>
+	    								<span class="city">{{one.city}}</span>
+	    								<i class="iconfont icon-people_fill"></i>
+	    								<span class="education">{{one.education}}</span>
+	    								<i class="iconfont icon-transaction_fill"></i>
+	    								<span class="welfare">{{one.welfare|welfareFilter}}</span>
+	    							</li>
+	    					</ul>
+	    					<span class="tag" v-if="one.sended==1">已投递</span>
+							</dt>
+						</dl>
+						</div>
+						
+					</div>
+					
+					
+				</div>
+			</div>
+			
+
+
+		</div>
+		
+		<script src="../js/mui.min.js"></script>		
+		<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
+		<script type="text/javascript" src="../js/resource.js" ></script>
+		<script type="text/javascript" src="../js/vue.min.js" ></script>
+		<script type="text/javascript" src="../js/vue-touch.js" ></script>
+		<script type="text/javascript" src="../js/vue_tap.js" ></script>	
+		<script type="text/javascript" src="recruit_list.js" ></script>
+	</body>
+	
+</html>

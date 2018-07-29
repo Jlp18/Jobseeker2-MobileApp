@@ -1,0 +1,222 @@
+var I;
+var a=0;
+var e=0;
+mui.ready(function(){
+    I = new Vue({
+		el:"#app",
+		data:{
+			showPanel:"default",
+			condition:"",
+			recruit1:[],
+			add1:[],
+		    recruit5:[],
+		    add5:[],
+		    recruit6:[],
+		    add6:[]
+		},
+		methods:{
+			showDefaultPanel:function(){
+				this.showPanel="default";
+				
+			},
+			
+			showAreaPanel:function(){
+				this.showPanel="area";
+				mui("#refreshContainer").pullRefresh().scrollTo(0,0,10);
+			},
+			
+			showJobPanel:function(){
+				this.showPanel="job";
+				mui("#refreshContainer").pullRefresh().scrollTo(0,0,10);
+			},
+			
+			showSalaryPanel:function(){
+				this.showPanel="salary";
+				mui("#refreshContainer").pullRefresh().scrollTo(0,0,10);
+			},
+			
+			showNewPanel:function(){
+				this.showPanel="new";
+				mui("#refreshContainer").pullRefresh().scrollTo(0,0,10);//滚动回顶部
+			},
+			
+			searchList:function(){
+				var ref = this;
+				$.ajax({
+					type:"post",
+					data:{
+						content:ref.condition
+					},
+					url:nebula+"/search/searchList",
+					beforeSend:function(request){
+						request.setRequestHeader("Authorization", localStorage.getItem("token"));
+					},
+					success:function(json){
+						if(json.code==200&&json.result==true){
+							ref.recruit6=json.data;
+						}
+					},
+					error:function(error){
+						console.log(JSON.stringify(error));
+						mui.toast("执行错误");
+					}
+				});
+			}	
+			
+		},
+		mounted:function(){
+			var ref=this;
+			$.ajax({
+				type:"post",
+				data:{
+					s:a
+				},
+				url:nebula+"/recruit/searchRecruitlistDefault",
+				beforeSend:function(request){
+					request.setRequestHeader("Authorization", localStorage.getItem("token"));
+				},
+				success:function(json){
+					if(json.code==200&&json.result==true){
+						ref.recruit1=json.data;
+					}
+				},
+				error:function(error){
+					console.log(JSON.stringify(error));
+					mui.toast("执行错误");
+				}
+			});
+			
+			$.ajax({
+				type:"post",
+				data:{
+					d:e
+				},
+				url:nebula+"/recruit/searchRecruitlistNew",
+				beforeSend:function(request){
+					request.setRequestHeader("Authorization", localStorage.getItem("token"));
+				},
+				success:function(json){
+					if(json.code==200&&json.result==true){
+						ref.recruit5=json.data;
+					}
+				},
+				error:function(error){
+					console.log(JSON.stringify(error));
+					mui.toast("执行错误");
+				}
+				});	
+
+			
+		},
+		filters:{
+			welfareFilter:function(welfare){
+				var temp=welfare.split(",");
+				if(temp.length>0){
+					return temp[0];
+				}
+				else{
+					return null;
+				}
+			}
+		},
+	});
+})
+
+mui.plusReady(function(){
+	plus.navigator.setStatusBarBackground("#007AFF");  //OS顶部状态栏背景色
+	plus.navigator.setStatusBarStyle("light");  //OS顶部文字白色
+	plus.screen.lockOrientation("portrait-primary"); //禁止横屏切换
+
+})
+
+mui.init({
+    pullRefresh : {
+        container:"#refreshContainer",//待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
+        up : {
+            height:30,// 可选.默认50.触发上拉加载拖动距离
+            auto:false,// 可选,默认false.自动上拉加载一次
+            callback : function() {
+                var self = this; // 这里的this == mui('#refreshContainer').pullRefresh()
+                // 加载更多的内容
+                this.refresh(true);
+                loadMore(this);
+            } //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+        }
+    }
+});
+
+var loadMore = function(pullRefresh){
+	//for(var i=0;i<5;i++){
+		
+		
+		if(I.showPanel=="default")
+		{
+        
+			//pullRefresh.endPullupToRefresh(false);
+			a=a+5;
+		
+			$.ajax({
+				type:"post",
+				data:{
+					s:a
+				},
+				url:nebula+"/recruit/searchRecruitlistDefault",
+				beforeSend:function(request){
+					request.setRequestHeader("Authorization", localStorage.getItem("token"));
+				},
+				success:function(json){
+					if(json.code==200&&json.result==true){
+						I.add1=json.data;
+						for(var i = 0,len = I.add1.length;i < len;i++) {
+							I.recruit1.push(I.add1[i]);
+						}
+						pullRefresh.endPullupToRefresh(false);
+					}
+					if(json.data==""){
+						mui.toast("没有更多数据了");
+    					//pullRefresh.endPullupToRefresh(true);
+   					}
+    				
+				},
+				error:function(error){
+					console.log(JSON.stringify(error));
+					mui.toast("执行错误");
+				}
+			});
+		}
+		if(I.showPanel=="new"){
+			//pullRefresh.endPullupToRefresh(false);
+			
+			e=e+5;
+			$.ajax({
+			type:"post",
+			data:{
+				d:e
+			},
+			url:nebula+"/recruit/searchRecruitlistNew",
+			beforeSend:function(request){
+				request.setRequestHeader("Authorization", localStorage.getItem("token"));
+			},
+			success:function(json){
+				if(json.code==200&&json.result==true){
+					I.add5=json.data;
+					for(var i = 0,len = I.add5.length;i < len;i++) {
+						I.recruit5.push(I.add5[i]);
+					}
+					pullRefresh.endPullupToRefresh(false);
+				}
+				if(json.data==""){
+					mui.toast("没有更多数据了");
+    				//pullRefresh.endPullupToRefresh(true);
+   				}
+    				
+			},
+			error:function(error){
+				console.log(JSON.stringify(error));
+				mui.toast("执行错误");
+			}
+		});
+		}
+	//}	
+};
+
