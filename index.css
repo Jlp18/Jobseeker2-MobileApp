@@ -1,0 +1,259 @@
+.user_container{
+	
+}
+.user_container .user_info{
+	background-color: #007AFF;
+	padding-top: 30px;
+	padding-left: 20px;
+	padding-right: 30px;
+	padding-bottom: 20px;
+	display: flex;
+}
+.user_container .user_info .photo{
+	width: 90px;
+	height: 90px;
+	border-radius: 45px;
+	border: solid #fff 4px;
+	background-color: #bbb;
+	background-image: url(img/photo.png);
+	background-size: cover;
+	margin-right: 18px;
+}
+
+.user_container .user_info .user_name{
+	color: #fff;
+	font-size: 24px;
+	margin-top: 0;
+}
+
+
+.user_container .user_info .level{
+	display: inline-block;
+	height: 22px;
+	width: 50px;
+	background-color: #fff;
+	border-radius: 3px;
+	text-align: center;
+	line-height: 22px;
+	color: #007AFF;
+	font-size: 14px;
+}
+
+.user_container .user_info .vip{
+	font-size: 14px;
+	color: #fff;
+	margin-left: 5px;
+	
+}
+.user_container .user_info .progress{
+	height: 8px;
+	background-color: rgba(255,255,255,0.5);
+	border-radius: 4px;
+}
+
+.user_container .user_info dl{
+	flex-grow: 1;
+	margin-top: 5px;
+	margin-bottom: 0;
+}
+
+.user_container .user_info .exp{
+	background-color: #fff;
+	height: 100%;
+	border-radius: 4px;
+}
+.user_container .user_info dt{
+	margin-bottom: 10px;
+}
+.user_container .user_info dt:last-child{
+	margin-bottom: 0px;
+}
+
+.user_container .user_action{
+	margin-top: 0;
+	margin-bottom: 0;
+	display: flex;
+	background-color: #006EE6;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.user_container .user_action dt{
+		flex-grow: 1;
+		border-right: solid 1px #fff;
+}
+.user_container .user_action dt:last-child{
+		flex-grow: 1;
+		border-right: solid 0px #fff;
+}
+
+.user_container .user_action span{
+	color: #fff;
+	font-size: 15px;
+	display: block;
+	text-align: center;
+}
+
+/*导航栏*/
+.navigator{
+	background-color: #fff;
+	overflow: hidden;
+	padding-top: 15px;
+	padding-bottom: 10px;
+}
+.navigator dl{
+	display: flex;
+	justify-content: space-around;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-bottom: 40px;
+}
+.navigator dt{
+	width: 74px;
+	height: 74px;
+	background-color: #bbb;
+	border-radius: 37px;
+	text-align: center;
+	line-height: 74px;
+	position: relative;
+}
+
+.navigator .iconfont{
+	color: #fff;
+	font-size: 40px;
+}
+.navigator .color_1{
+	background-color: #F66D03;
+}
+.navigator .color_2{
+	background-color: #3EA2F7;
+}
+.navigator .color_3{
+	background-color: #FBB314;
+}
+.navigator .color_4{
+	background-color: #DB0005;
+}
+.navigator .color_5{
+	background-color: #FF4D4B;
+}
+.navigator .color_6{
+	background-color: #FB2E74;
+}
+.navigator .color_7{
+	background-color: #31BD80;
+}
+.navigator .color_8{
+	background-color: #FF7A02;
+}
+
+
+.navigator span{
+	position: absolute;
+	width: 74px;
+	display: block;
+	text-align: center;
+	color: #333;
+	font-size: 15px;
+	top: 85px;
+	line-height: 1;
+}
+
+.recruit_container{
+	
+}
+.recruit_container h4{
+	font-weight: normal;
+	font-size: 16px;
+	margin-left: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: #333;
+}
+
+.recruit_container dl{
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+.recruit_container dt{
+	background-color: #fff;
+	display: flex;
+	padding: 15px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.recruit_container .square{
+	width: 70px;
+	height: 70px;
+	background-color: #ccc;
+	font-size: 30px;
+	line-height: 70px;
+	text-align: center;
+	color: #333;
+	margin-right: 15px;
+}
+.recruit_container ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-size: 15px;
+	color: #333;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.recruit_container li{
+	overflow: hidden;
+}
+
+.recruit_container .job{
+	float: left;
+	font-size: 18px;
+	font-weight: bold;
+}
+.recruit_container .date{
+	float: right;
+	color: #555;
+}
+.recruit_container .company{
+	float: left;
+	color: #555;
+}
+.recruit_container .salary{
+	float: right;
+	color: red;
+}
+.recruit_container .welfare{
+	color: #555;
+	font-size: 14px;
+	margin-right: 5px;
+}
+.recruit_container .education{
+	color: #555;
+	font-size: 14px;
+	margin-right: 5px;
+}
+.recruit_container .city{
+	color: #555;
+	font-size: 14px;
+	margin-right: 5px;
+}
+.recruit_container .iconfont{
+	color: #999;
+	font-size: 16px;
+}
+
+.recruit_container .tag{
+	font-size: 12px;
+	background-color: #31BD80;
+	color: #fff;
+	position: absolute;
+	bottom: 0;
+	width: 50px;
+	right: 0;
+	text-align: center;
+	height: 26px;
+	line-height: 26px;
+	
+}

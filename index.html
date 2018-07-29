@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/style.css" /> 
+    <link rel="stylesheet" href="css/iconfont.css" />
+    <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+	<div id="app" class="mui-content">
+	    <div class="user_container">
+	    	<div class="user_info">
+	    		<div id="photo" class="photo"></div>
+	    		<dl>
+	    			<dt><h4 class="user_name">{{username}}</h4></dt>
+	    			<dt>
+	    				<span class="level">LV{{Math.floor(exp/1000)}}</span>
+	    				<span class="vip" v-if="exp>=0&&exp<=10000">普通用户</span>
+	    				<span class="vip" v-if="exp>=10000&&exp<=20000">铜牌用户</span>
+	    				<span class="vip" v-if="exp>=20000&&exp<=30000">银牌用户</span>
+	    				<span class="vip" v-if="exp>=30000&&exp<40000">金牌用户</span>
+	    				<span class="vip" v-if="exp>=40000">钻石用户</span>
+	    			</dt>
+	    			<dt>
+	    				<div class="progress">
+	    					<div class="exp" :style="progress"></div>
+	    				</div>
+	    			</dt>
+	    		</dl>
+	    	</div> 
+	    	<dl class="user_action">
+	    		<dt>
+	    			<span>{{resumeCount}}</span>
+	    			<span>已投简历</span>
+	    		</dt>
+	    		<dt>
+	    			<span>16</span>
+	    			<span>我的面试</span>
+	    		</dt>
+	    		<dt>
+	    			<span>10</span>
+	    			<span>我的收藏</span>
+	    		</dt>
+	    	</dl>
+	    </div>
+	    <div class="navigator">
+	    	<dl>
+	    		<dt class="color_1">
+	    			<i class="iconfont icon-addressbook" v-tap="{fn:showrecruit_list}"></i>
+	    			<span>企业招聘</span>
+	    		</dt>
+	    		<dt class="color_2">
+	    			<i class="iconfont icon-brush"></i>
+	    			<span>岗位介绍</span>
+	    		</dt>
+	    		<dt class="color_3">
+	    			<i class="iconfont icon-document"></i>
+	    			<span>模拟面试</span>
+	    		</dt>
+	    		<dt class="color_4">
+	    			<i class="iconfont icon-customerservice"></i>
+	    			<span>面试辅导</span>
+	    		</dt>
+	    	</dl>
+	    	<dl>
+	    		<dt class="color_5" @click="resume">
+	    			<i class="iconfont icon-tasklist"></i>
+	    			<span>我的简历</span>
+	    		</dt>
+	    		<dt class="color_6">
+	    			<i class="iconfont icon-questions"></i>
+	    			<span>技术培训</span>
+	    		</dt>
+	    		<dt class="color_7">
+	    			<i class="iconfont icon-video"></i>
+	    			<span>大讲堂</span>
+	    		</dt>
+	    		<dt class="color_8">
+	    			<i class="iconfont icon-computer"></i>
+	    			<span>技术资料</span>
+	    		</dt>
+	    	</dl>
+	    </div>
+	    <div class="recruit_container">
+	    	<h4>最新招聘</h4>
+	    	<dl v-if="recruit!=null&&recruit.length>0">
+	    		<dt name="recruit" v-for="one in recruit" v-longtap="{fn:sendResume}" :data-id="one.id" @click="positionInfo">
+	    			<div class="square">前</div>
+	    			<ul>
+	    				<li>
+	    					<span class="job">{{one.job}}</span>
+	    					<span class="date">{{one.date}}</span>
+	    				</li>
+	    				<li>
+	    					<span class="company">{{one.name}}</span>
+	    					<span class="salary">{{one.salary}}</span>
+	    				</li>
+	    				<li>
+	    					<i class="iconfont icon-coordinates_fill"></i>
+	    					<span class="city">{{one.city}}</span>
+	    					<i class="iconfont icon-people_fill"></i>
+	    					<span class="education">{{one.education}}</span>
+	    					<i class="iconfont icon-transaction_fill"></i>
+	    					<span class="welfare">{{one.welfare|welfareFilter}}</span>
+	    				</li>
+	    			</ul>
+	    			
+	    			<span class="tag" v-if="one.sended==1">已投递</span>
+	    			
+	    		</dt>
+	    		
+	    		<!--
+	    		<dt>
+	    			<div class="square">前</div>
+	    			<ul>
+	    				<li>
+	    					<span class="job">Web前端工程师</span>
+	    					<span class="date">2018/07/02</span>
+	    				</li>
+	    				<li>
+	    					<span class="company">大连华宇科技有限公司</span>
+	    					<span class="salary">4K~6K</span>
+	    				</li>
+	    				<li>
+	    					<i class="iconfont icon-coordinates_fill"></i>
+	    					<span class="city">大连</span>
+	    					<i class="iconfont icon-people_fill"></i>
+	    					<span class="education">本科</span>
+	    					<i class="iconfont icon-transaction_fill"></i>
+	    					<span class="welfare">五险一金</span>
+	    				</li>
+	    			</ul>
+	    		</dt>
+	    	    -->
+	    		
+	    		
+	    	</dl>
+	    	<p v-if="recruit==null || recruit.length==0" align="center">没有数据</p>
+	    </div>
+	</div>
+	
+	<script type="text/javascript" src="js/mui.min.js" ></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js" ></script>
+	<script type="text/javascript" src="js/regExp.js" ></script>
+	<script type="text/javascript" src="js/resource.js" ></script>
+	<script type="text/javascript" src="js/vue.min.js" ></script>
+	<script type="text/javascript" src="js/vue_tap.js" ></script>
+	<script type="text/javascript" src="js/vue-touch.js" ></script>
+	<script type="text/javascript" src="index.js" ></script>
+</body>
+</html>
