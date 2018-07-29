@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/iconfont.css" />
+		<link rel="stylesheet" href="css/jlp_iconfont.css" />
+		<link rel="stylesheet" href="login.css" />
+	</head>
+
+	<body>
+		<div id="app">
+			<header class="mui-bar mui-bar-nav">
+			    <h1 class="mui-title">滕泰人才库</h1>
+			</header>
+			<div class="mui-content">
+				<img class="banner" src="img/banner.png" width="100%" />
+				<dl class="tab">
+					<dt :class="{active:showPanel=='login'}" v-tap="{method:showLoginPanel}">账号密码登录</dt>
+					<dd>
+						<div class="line"></div>
+					</dd>
+					<dt :class="{active:showPanel=='register'}" v-tap="{method:showRegisterPanel}">新用户注册</dt>
+				</dl>
+				<div class="loginPanel" v-show="showPanel=='login'">
+					<p>
+						<i class="iconfont icon-people_fill"></i>
+						<input type="text" v-model="login.username" placeholder="用户名/ 手机号/ 邮箱" />
+					</p>
+					<p>
+						<i class="iconfont icon-lock_fill"></i>
+						<input type="password" v-model="login.password" placeholder="密码" />
+					</p>
+					
+					<input type="button" value="登录系统" v-tap="{method:loginSystem}" />
+					<p align="center">
+						<a href="forgetPassword/forgetPassword.html">忘记密码?</a>
+					</p>
+					
+				</div>
+				<div class="registerPanel" v-show="showPanel=='register'">
+					<p>
+						<i class="iconfont icon-people_fill"></i>
+						<input type="text" v-model="register.username" placeholder="用户名/ 手机号/ 邮箱" />
+					</p>
+					<p>
+						<i class="iconfont icon-lock_fill"></i>
+						<input type="password" v-model="register.password" placeholder="密码" />
+					</p>
+					<p>
+						<i class="iconfont icon-lock_fill"></i>
+						<input type="password" v-model="register.repassword" placeholder="重复密码" />
+					</p>
+					<p>
+						<i class="iconfont icon-email"></i>
+						<input type="text" v-model="register.userEmail" placeholder="邮箱" />
+					</p>
+					<div class="chooseRole">
+						<div class="ss">用户角色  :</div>
+						<select id="chooseRole" v-model="register.chooseRole">
+							<option value="求职者">求职者</option>
+							<option value="企业用户">企业用户</option>
+							<option value="管理员">管理员</option>
+							<option value="超级管理员">超级管理员</option>
+					</select>
+					</div>
+					
+					<input type="button" value="注册用户" v-tap="{method:registerSystem}"/>
+				</div>
+			</div>
+		</div>
+		
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js" ></script>
+		<script type="text/javascript" src="js/vue_tap.js" ></script>
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js" ></script>
+		<script type="text/javascript" src="js/regExp.js" ></script>
+		<script type="text/javascript" src="js/resource.js" ></script>
+		<script type="text/javascript" src="login.js" ></script>
+	</body>
+</html>
