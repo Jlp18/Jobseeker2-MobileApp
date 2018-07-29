@@ -1,0 +1,177 @@
+header a{
+	color: #fff;
+}
+
+.operate{
+	float: right;
+	color: #fff;
+	font-size: 15px;
+	margin-top: 13px;
+	margin-right: 6px;
+}
+
+.resume{
+	position: relative;
+	z-index: 1;
+	overflow:hidden;
+}
+
+.resume .header-extra{
+	background-color: #0077ff;
+	overflow:hidden !important; 
+    height: 50px;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+.resume .userinfo{
+	background-color: #fff;
+	overflow: hidden;
+	border-radius: 3px;
+	margin: 10px 15px 0 15px;
+}
+
+.resume .userinfo dl{
+	
+	overflow: hidden;
+	margin: 15px 0 0 0;
+}
+
+.resume .userinfo dl dt{
+	margin: 0 15px;
+}
+
+/*第一个dt*/
+.resume .userinfo dl dt:nth-child(1){
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+/*第二个dt,下边框添加一个虚线*/
+.resume .userinfo dl dt:nth-child(2){
+	border-bottom: dashed 1px #e0e0e0;
+}
+
+.resume .userinfo dl dt a{
+	display: flex;
+	margin: 0 5px;
+	justify-content: space-between;
+}
+
+.resume .userinfo dl dt a h4{
+	font-size: 16px;
+	font-weight: normal;
+	color: #333;
+}
+
+.resume .userinfo dl dt a .photo{
+	display: block;
+	width: 75px;
+	height: 75px;
+	border-radius: 5px;
+}
+
+.resume .userinfo dl dt a .head-photo{
+	display: flex;
+}
+
+
+.resume .userinfo dl dt a .head-photo i{
+	margin-top: 25px;
+	margin-left: 5px;
+	font-size: 18px;
+	color: #ccc;
+}
+.resume .userinfo dl dt a .label {
+    color: #333;
+    font-size: 14px;
+    line-height: 40px;
+}
+
+.resume .userinfo dl dt a .value{
+	color: #333;
+    font-size: 14px;
+    line-height: 40px;
+}
+
+.resume .userinfo dl dt a i {
+  vertical-align: middle;
+  font-size: 18px;
+  margin-left: 5px;
+  color: #ccc;
+}
+
+.resume .card{
+	background-color: #fff;
+	overflow: hidden;
+	border-radius: 3px;
+	margin: 15px 15px 15px 15px;
+	padding: 0 15px;
+}
+.resume .card dl{
+	margin: 0;
+	overflow: hidden;
+	padding-bottom: 1px;
+}
+.resume .card dl dt{
+	margin: 0;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 41px;
+	color: #333;
+	border-bottom: dashed 1px #e0e0e0;
+}
+
+.resume .card dl dd{
+	margin: 0;
+}
+/*除了最后一个dd,其余每个下边框加一个虚线*/
+.resume .card dl dd:not(:last-child) {
+  border-bottom: dashed 1px #e0e0e0;
+}
+
+.resume .card dl dd a{
+	display: flex;
+	justify-content: space-between;
+	margin: 0 5px;
+}
+
+.resume .card dl dd a .label {
+  color: #333;
+  font-size: 14px;
+  line-height: 40px;
+}
+
+.resume .card dl dd a .label {
+  color: #333;
+  font-size: 14px;
+  line-height: 40px;
+}
+
+.resume .card dl dd a .value {
+  color: #333;
+  font-size: 14px;
+  line-height: 40px;
+}
+
+.resume .card dl dd a i {
+  vertical-align: middle;
+  font-size: 18px;
+  margin-left: 5px;
+  color: #ccc;
+}
+
+.resume .card .btn{
+	display: block;
+	width: 15vw;
+	height: 15vw;
+	background-color: #007AFF;
+	color: #fff;
+	font-size: 10vw;
+	font-weight: bold;
+	border-radius: 30px;
+	padding-top: 0;
+	margin-left: 40%;
+	margin-top: 25px;
+	margin-bottom: 20px;
+}
