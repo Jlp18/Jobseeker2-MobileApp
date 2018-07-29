@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/mui.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/position_iconfont.css" />
+		<link rel="stylesheet" href="position.css" />
+	</head>
+
+	<body>  
+		<div >
+			<header class="mui-bar mui-bar-nav">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" v-tap="{method:backindexInfo}"></a>
+				<h1 class="mui-title">职位详情</h1>
+			</header>
+			<div id="app" class="mui-content">
+				<div class="job">
+					<p class="jobname">{{jobname}}<i class="iconfont icon-ji" style="position:absolute; right:28px"></i></p>
+					<p class="salary">{{salary}}</p>
+					
+					<hr style="height:1px;border:none;border-top:1px dashed #CCCCCC;" />
+					<dl class="jobinfo">
+						<dt>
+							<i class="iconfont icon-coordinates_fill"></i>
+							<span>{{location}}</span>
+							<i class="iconfont icon-drxx20"></i>
+							<span>{{experience}}</span>
+							<span></span>
+							<i class="iconfont icon-shijian" ></i>
+							<span>{{time}}</span>
+						</dt>
+					</dl>
+					<hr style="height:1px;border:none;border-top:1px dashed #CCCCCC;" />
+					<div class="companyinfo">
+						<div class="photo"></div>
+							<dl>
+							<dt>
+								<p class="companyname">{{companyname}}</p>
+							</dt>
+							<dt>
+								<p class="companyrelated">
+									<span>{{mainwork|mainworkFilter}}</span>/
+									<span>{{type}}</span>/
+									<span>{{scale}}</span>
+								</p>
+							</dt>
+							<dt>
+								
+						    </dl>
+						    <i class="iconfont icon-jinru" v-tap="{method:showcompanyInfo}" style="position:absolute; right:5px"></i>
+						</div>
+						<hr style="height:1px;border:none;border-top:1px dashed #CCCCCC;" />
+						<div class="information" >
+							<dl v-if="">
+								<dt>{{welfare|welfareFilter1}}</dt>
+								<dt>{{welfare|welfareFilter2}}</dt>
+								<dt>{{welfare|welfareFilter3}}</dt>
+								<dt>{{welfare|welfareFilter4}}</dt>
+								<dt>{{welfare|welfareFilter5}}</dt>
+								<dt>{{welfare|welfareFilter6}}</dt>
+								<dt>{{welfare|welfareFilter7}}</dt>
+								<dt>{{welfare|welfareFilter8}}</dt>
+							</dl>
+							
+						</div>
+					</div>
+					
+				<div class="description">
+					<p class="jobdescription">职位描述</p>
+					<hr style="height:1px;border:none;border-top:1px dashed #CCCCCC;" />
+					<p class="jobintroduction">岗位介绍</p>
+						<div id="jobintroduce">
+							
+						</div>
+					<p class="jobrequirements">任职要求</p>
+						<div id="require" >
+					
+						</div>
+				</div>
+				<input type="button" value="投递简历" v-tap="{method:sendMyResume}"/>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script type="text/javascript" src="../js/mui.js" ></script>
+		<script type="text/javascript" src="../js/vue_tap.js"></script>
+		<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
+		<script type="text/javascript" src="../js/regexp.js" ></script>
+		<script type="text/javascript" src="../js/resource.js" ></script>
+		
+		<script type="text/javascript" src="position.js" ></script>
+		
+	</body>
+
+</html>

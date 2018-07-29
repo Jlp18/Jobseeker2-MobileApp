@@ -1,0 +1,168 @@
+html{
+	height: 100%;
+}
+body{
+	height: inherit;
+	background-color: #E0E0E0;
+}
+.mui-content{
+	background-color: #E0E0E0 !important;
+}
+.job {
+	background-color: #fff;
+	height: 340px;
+	width: 355px;
+	border-radius: 7px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    margin-top: 15px;
+    position:relative;
+  
+}
+.job .jobname{
+	color: #000000;
+	font-size: 18px;
+	padding-left: 20px;
+	padding-top: 14px;
+}
+.job .jobname i{
+	color: #DB0005;
+	font-size: 25px;
+	position: absolute;
+	padding-top: 5px;
+	padding-left: 3px;
+}
+.job .salary{
+	color: #CF2D28;
+	font-size: 16px;
+	padding-left: 15px;
+}
+
+.job .jobinfo{
+	height: 10px;	
+	color: #8F8F94;
+	position: relative;
+	margin-top: 8px;
+}
+
+.jobinfo .iconfont{
+	margin-left: 15px;
+}
+
+
+.companyinfo{
+	display: flex;
+}
+
+.companyinfo i{
+	color: #8F8F94;
+	font-size: 30px;
+	padding-top: 20px;
+}
+.companyinfo dl{
+	margin-left: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	display: block;
+	width: 250px;
+	height: 70px;
+}
+.companyinfo .photo{
+	width: 60px;
+	height: 60px;
+	border-radius: 45px;
+	border-left: 0px;
+	border-top: 0px;
+	border-bottom: 0px;
+	border-right: 0px;
+	background-image: url(../img/hp.jpg);
+	background-size: cover;
+	margin-right: 5px;
+	margin-left: 0px;
+	padding-right: 5px;
+}
+
+.companyinfo .companyname{
+	color: #555555;
+	font-size: 18px;
+	margin-top: 0px;
+}
+
+.companyinfo .companyrelated{
+	font-size: 15px;
+	padding-top: 0px;
+}
+.companyinfo .companyrelated span{
+
+}
+
+/*.companyinfo hr{
+	margin-bottom: 0px !important;
+	margin-top: 0px !important;
+}*/
+.mui-content .information dl{
+	margin-top: 0px;
+}
+
+.mui-content .information dt{
+	text-align: center;
+	
+	font-size: 13px;
+	color: #6D6D72;
+	background-color: #E0E0E0;
+	width: 74px;
+	float: left;
+	border-radius: 7px;
+	margin-left: 12px;
+	margin-bottom: 12px;
+	line-height: 40px;
+}
+
+.description {
+	background-color: #fff;
+	width: 355px;
+	border-radius: 7px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    margin-top: 15px;
+}
+
+.description .jobdescription{
+	color: #000000;
+	font-size: 16px;
+	margin-left: 20px;
+	padding-top: 15px;
+}
+.description .jobintroduction{
+	color: #000000;
+	font-size: 14px;
+	margin-left: 22px;
+	padding-top: 5px;
+}
+
+.description .jobrequirements{
+	color: #000000;
+	font-size: 14px;
+	margin-left: 22px;
+	padding-top: 5px;
+}
+
+.description div{
+	margin-left: 20px;
+	margin-right: 10px;
+}
+
+.mui-content [type="button"]{
+	width: 355px;
+	background-color: #007AFF ;
+	border-radius: 7px;
+	color: #fff;
+	line-height: 40px;
+	font-size: 20px;
+	font-weight: 800;
+	margin-top: 5px;
+	margin-bottom: 20px;
+	margin-left: 10px;
+}
