@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		
+		<div id="app">
+			<p v-html="address"></p>
+			<p>
+				<input type="text" placeholder="用户名" v-model="username" />
+			</p>
+			<p>{{username}}</p>
+			<p>
+				<select v-model="city">
+					<option value="北京">北京</option>
+					<option value="上海">上海</option>
+					<option value="广州">广州</option>
+				</select>
+			</p>
+			<p>{{city}}</p>
+			<p>
+				<input type="radio" value="管理员" v-model="role" />管理员
+				<input type="radio" value="企业用户" v-model="role" />企业用户
+				<input type="radio" value="求职者" v-model="role" />求职者
+			</p>
+			<p>{{role}}</p>
+			<p>
+				<input type="text" v-model="age" placeholder="年龄" />
+			</p>
+			<p v-show="age>=18">
+				<button>报名</button>
+			</p>
+			<p v-if="age<18">不允许报名</p>
+			
+			<table width="80%" border="1">
+				<tr>
+					<th>姓名</th>
+					<th>性别</th>
+					<th>年龄</th>
+				</tr>
+				<tr v-for="one in student" align="center">
+					<td>{{one.name|hideName}}</td>
+					<td>{{one.sex}}</td>
+					<td>{{one.age}}</td>
+				</tr>
+			</table>
+			
+			<p>
+				<button v-tap="{method:sayHello}">测试按钮</button>
+			</p>
+			<p :title="level">HelloWorld</p>
+			
+			
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script type="text/javascript" src="../js/vue_tap.js" ></script>
+		<script type="text/javascript" src="demo_2.js"></script>
+	</body>
+
+</html>
