@@ -1,0 +1,10 @@
+package cn.tentact.nebula.resume
+
+import java.util.Map
+
+interface I_ResumeService {
+	/**
+	 * 投递简历
+	 */
+	def int sendMyResume(Map map);
+}

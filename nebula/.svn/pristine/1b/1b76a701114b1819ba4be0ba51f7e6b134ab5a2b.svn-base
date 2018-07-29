@@ -1,0 +1,7 @@
+package cn.tentact.nebula.company
+
+import java.util.Map
+
+interface I_CompanyService {
+	def void insert(Map map);
+}

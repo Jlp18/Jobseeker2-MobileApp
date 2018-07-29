@@ -1,0 +1,17 @@
+package cn.tentact.nebula.recruit
+
+import org.springframework.stereotype.Service
+import org.springframework.beans.factory.annotation.Autowired
+import cn.tentact.nebula.db.dao.I_RecruitDetailsDao
+
+@Service
+class RecruitDetailsService implements I_RecruitDetailsService {
+	@Autowired
+	I_RecruitDetailsDao recruitDetailsDao;
+	
+	override RecruitDetails(int recruit_id) {
+		var map=recruitDetailsDao.recruitDetails(recruit_id);
+		return map;
+	}
+	
+}

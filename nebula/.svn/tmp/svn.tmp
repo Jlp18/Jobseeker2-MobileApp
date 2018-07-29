@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.tentact.nebula.db.dao.I_ResumeDao">
+	<select id="searchMyResumeId" parameterType="String" resultType="Integer">
+		 SELECT
+		 	r.id 
+		 FROM 
+		 	user u 
+		 JOIN 
+		 	resume r 
+		 ON 
+		 	u.id=r.user_id 
+		 WHERE 
+		 	u.username=#{username}
+	</select>
+	
+	<update id="updateResumeinfo" parameterType="Map">
+		UPDATE 
+			resume 
+        SET 
+        	name=#{name},
+        	sex=#{sex},
+        	birthday=#{birthday},
+        	height=#{height},
+        	weight=#{weight},
+        	married=#{married},
+        	city=#{city},
+        	education=#{education},
+        	tel=#{tel},
+        	email=#{email},
+        	job_city=#{job_city},
+        	job_salary={job_salary},
+        	job_name=#{job_name},
+        	job_hiredate=#{job_hiredate}
+		WHERE 
+			user_id=#{user_id}
+	</update>
+	
+	<insert id="insertResumeinfo" parameterType="Map" >
+			INSERT INTO 
+				resume (
+					id,
+					name,
+					auth,
+					sex,
+					user_id,
+					birthday,
+					height,
+					weight,
+					married,
+					city,
+					education,
+					tel,
+					email,
+					job_city,
+					job_salary,
+					job_name,
+					job_hiredate
+				)
+			  VALUES (
+		            NEXT VALUE FOR MYCATSEQ_RESUME,
+		            #{name},
+		            #{auth},
+		            #{sex},
+		            #{user_id},
+		            #{birthday},
+		            #{height},
+		            #{weight},
+		            #{married},
+		            #{city},
+		            #{education},
+		            #{tel},
+		            #{email},
+		            #{job_city},
+		            #{job_salary},
+		            #{job_name},
+		            #{job_hiredate} 
+	           );
+	</insert>
+	
+	<select id="selectResumeinfo" parameterType="int" resultType="Map">
+		SELECT
+			name,
+			auth,
+			sex,
+			birthday,
+			height,
+			weight,
+			married,
+			city,
+			education,
+			tel,
+			email,
+			job_city,
+			job_salary,
+			job_name,
+			job_hiredate,
+			photo_path
+	   FROM
+            resume
+       WHERE
+            user_id=#{user_id}
+	</select>
+	<update id="updatePhoto" parameterType="Map">
+		UPDATE 
+			resume
+		SET
+			photo_path=#{photo_path}
+		WHERE
+			user_id=#{user_id}
+	</update>
+</mapper>

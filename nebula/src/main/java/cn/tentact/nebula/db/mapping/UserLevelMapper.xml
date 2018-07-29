@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.tentact.nebula.db.dao.I_UserLevelDao">
+	<select id="searchExp" parameterType="String" resultType="int">
+		SELECT
+			ul.exp
+		FROM
+			`user` AS u
+		INNER JOIN user_level AS ul ON u.id = ul.user_id
+		WHERE
+			username = #{username}
+	</select>
+	<update id="updateExp" parameterType="Map">
+		UPDATE
+			user_level
+		SET 
+			exp = exp + #{exp}
+		WHERE 
+			user_id=#{userId};
+	</update>
+</mapper>

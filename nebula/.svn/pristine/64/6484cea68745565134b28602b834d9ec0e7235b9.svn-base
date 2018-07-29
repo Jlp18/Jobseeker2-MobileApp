@@ -1,0 +1,11 @@
+package cn.tentact.nebula.db.search
+
+import java.util.List
+import java.util.Map
+
+interface I_SearchListService {
+	/**
+	 * 按条件搜索
+	 */
+	 def List<Map> searchList(String username,String content);
+}

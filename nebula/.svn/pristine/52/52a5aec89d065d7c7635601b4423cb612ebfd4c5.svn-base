@@ -1,0 +1,8 @@
+package cn.tentact.nebula.mongo.dao
+
+import org.bson.Document
+
+interface I_CompanyMongoDao {
+	
+	def void insert(Document document);
+}

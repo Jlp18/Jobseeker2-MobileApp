@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.tentact.nebula.db.dao.I_SearchListDao">
+	<select id="searchListDefault" parameterType="Map" resultType="Map">
+		SELECT
+			r.id,
+			r.job,
+			r.salary,
+			r.city,
+			r.education,
+			r.welfare,
+			DATE_FORMAT(r.date, "%Y/%m/%d") AS date,
+			c.`name`,
+			rr.id IS NOT NULL AS sended
+		FROM
+			recruit AS r
+		LEFT JOIN
+			recruit_resume rr ON rr.recruit_id = r.id
+		AND 
+			rr.resume_id = #{resumeId}
+		LEFT JOIN
+			company AS c ON r.company_id = c.id
+		WHERE
+			r.job LIKE '%' #{content} '%'
+		OR 
+			r.city LIKE '%' #{content} '%'
+		OR 
+			(c.NAME LIKE #{content} '%' AND c.NAME LIKE '%' #{content} '[^]')
+		OR 
+			(c.NAME = #{content})
+		OR 
+			(c.NAME LIKE '%' #{content})
+		GROUP BY
+			r.id
+	</select>
+	
+	
+	
+	<select id="searchListNew" parameterType="Map" resultType="Map">
+		SELECT
+			r.id,
+			r.job,
+			r.salary,
+			r.city,
+			r.education,
+			r.welfare,
+			DATE_FORMAT(r.date, "%Y/%m/%d") AS date,
+			c.`name`,
+			rr.id IS NOT NULL AS sended,
+			r.date AS date1
+		FROM
+			recruit AS r
+		LEFT JOIN 
+			recruit_resume rr ON rr.recruit_id = r.id
+		AND 
+			rr.resume_id = #{resumeId}
+		LEFT JOIN 
+			company AS c ON r.company_id = c.id
+		WHERE
+			r.job LIKE '%' #{content} '%'
+		OR 
+			r.city LIKE '%' #{content} '%'
+		OR 
+			(c.NAME LIKE #{content} '%' AND c.NAME LIKE '%' #{content} '[^]')
+		OR 
+			(c.NAME = #{content})
+		OR 
+			(c.NAME LIKE '%' #{content})
+		GROUP BY
+			r.id
+		ORDER BY
+			date1 DESC
+	</select>
+	
+	<select id="searchListSalarymin" parameterType="Map" resultType="Map">
+		SELECT
+			r.id,
+			r.job,
+			r.salary,
+			r.city,
+			r.education,
+			r.welfare,
+			DATE_FORMAT(r.date, "%Y/%m/%d") AS date,
+			c.`name`,
+			ABS(substring_index(r.salary, 'k', 1))
+		FROM
+			recruit AS r
+		LEFT JOIN
+			recruit_resume rr ON rr.recruit_id = r.id
+		AND
+			rr.resume_id = 1
+		LEFT JOIN
+			company AS c ON r.company_id = c.id
+		WHERE
+			r.job LIKE '%' #{content} '%'
+		OR 
+			r.city LIKE '%' #{content} '%'
+		OR 
+			(c.NAME LIKE #{content} '%' AND c.NAME LIKE '%' #{content} '[^]')
+		OR 
+			(c.NAME = #{content})
+		OR 
+			(c.NAME LIKE '%' #{content})
+		GROUP BY
+			r.id
+		ORDER BY
+			ABS(substring_index(r.salary, 'k', 1)) DESC
+	</select>
+	
+	<select id="searchListSalarymax" parameterType="Map" resultType="Map">
+		SELECT
+			r.id,
+			r.job,
+			r.salary,
+			r.city,
+			r.education,
+			r.welfare,
+			DATE_FORMAT(r.date, "%Y/%m/%d") AS date,
+			c.`name`,
+  			rr.id IS NOT NULL AS sended,
+			ABS(substring_index(substring_index(salary,"k",2),"~",-1)  ) as salaryMAX
+		FROM
+			recruit AS r
+		LEFT JOIN 
+			recruit_resume rr ON rr.recruit_id = r.id
+		AND
+			rr.resume_id = 1
+		LEFT JOIN
+			company AS c ON r.company_id = c.id
+		WHERE
+			r.job LIKE '%' #{content} '%'
+		OR 
+			r.city LIKE '%' #{content} '%'
+		OR 
+			(c.NAME LIKE #{content} '%' AND c.NAME LIKE '%' #{content} '[^]')
+		OR 
+			(c.NAME = #{content})
+		OR 
+			(c.NAME LIKE '%' #{content})
+		GROUP BY
+			r.id
+		ORDER BY
+			salaryMAX DESC
+	</select>
+	
+</mapper>

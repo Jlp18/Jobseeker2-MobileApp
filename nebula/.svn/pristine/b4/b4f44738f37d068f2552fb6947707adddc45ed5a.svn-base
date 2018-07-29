@@ -1,0 +1,28 @@
+package cn.tentact.nebula.resume
+
+import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestHeader
+import org.springframework.beans.factory.annotation.Autowired
+import cn.tentact.nebula.shiro.JwtUtil
+import cn.tentact.nebula.web.ResponseBean
+import org.apache.shiro.authz.annotation.RequiresRoles
+
+@RestController
+@RequestMapping("/resume")
+class ResumeController implements I_ResumeController {
+	@Autowired
+	I_ResumeService resumeService;
+	
+	@RequiresRoles("求职者")
+	@RequestMapping("sendMyResume")
+	override sendMyResume(@RequestHeader("Authorization") String token, int recruitId) {
+		var username=JwtUtil.getUsername(token);
+		var map=newHashMap("username"->username,"recruitId"->recruitId);
+		var i=resumeService.sendMyResume(map);
+		return new ResponseBean(200,"投递结果",true,i);
+		
+		
+	}
+	
+}

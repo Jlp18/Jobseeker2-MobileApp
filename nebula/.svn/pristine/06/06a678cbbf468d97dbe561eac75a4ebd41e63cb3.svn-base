@@ -1,0 +1,10 @@
+package cn.tentact.nebula.db.search
+
+import cn.tentact.nebula.web.ResponseBean
+
+interface I_SearchListController {
+	/**
+	 * 按条件搜索
+	 */
+	 def ResponseBean searchList(String token,String content);
+}

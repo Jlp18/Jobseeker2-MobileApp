@@ -1,0 +1,70 @@
+package cn.tentact.nebula.resume
+
+import org.springframework.stereotype.Service
+import java.util.Map
+import org.springframework.beans.factory.annotation.Autowired
+import cn.tentact.nebula.db.dao.I_ResumeDao
+import cn.tentact.nebula.db.dao.I_RecruitResumeDao
+import org.springframework.transaction.annotation.Transactional
+import cn.tentact.nebula.shiro.JwtUtil
+
+@Service
+class ResumeService implements I_ResumeService {
+	@Autowired
+	I_ResumeDao resumeDao;
+	
+	@Autowired
+	I_RecruitResumeDao recruitResumeDao;
+	
+	@Transactional
+	override sendMyResume(Map map) {
+		var username=map.get("username") as String;
+		var resumeId=resumeDao.searchMyResumeId(username);  //查询我的简历id
+		if(resumeId==null){
+			return -1;
+		}
+		map.put("resumeId",resumeId);
+		var i=recruitResumeDao.add(map);
+		return i;
+	}
+	
+	override updateResumeinfo(Map map) {
+		resumeDao.updateResumeinfo(map);
+	}
+	
+	override insertResumeinfo(Map map) {
+		var one=#{
+			"name"->map.get("name"),
+			"auth"->map.get("auth"),
+			"sex"->map.get("sex"),
+			"user_id"->map.get("user_id"),
+			"birthday"->map.get("birthday"),
+			"height"->map.get("height"),
+			"weight"->map.get("weight"),
+			"married"->map.get("married"),
+			"city"->map.get("city"),
+			"education"->map.get("education"),
+			"tel"->map.get("tel"),
+			"email"->map.get("email"),
+			"job_city"->map.get("job_city"),
+			"job_salary"->map.get("job_salary"),
+			"job_name"->map.get("job_name"),
+			"job_hiredate"->map.get("job_hiredate"),
+			"school"->map.get("school"),
+			"major"->map.get("major"),
+			"year"->map.get("year"),
+			"education_1"->map.get("education_1"),
+			"company_name"->map.get("company_name"),
+			"hiredate"->map.get("hiredate"),
+			"leavedate"->map.get("leavedate"),
+			"works"->map.get("works")	           
+		};
+		resumeDao.insertResumeinfo(one);
+	}
+	
+	override selectResumeinfo(int user_id) {
+		var map=resumeDao.selectResumeinfo(user_id);
+		return map;
+	}
+	
+}

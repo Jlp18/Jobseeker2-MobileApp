@@ -1,0 +1,69 @@
+package cn.tentact.nebula.user
+
+import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.beans.factory.annotation.Autowired
+import cn.tentact.nebula.web.ResponseBean
+import cn.tentact.nebula.shiro.JwtUtil
+import org.springframework.data.redis.core.RedisTemplate
+import java.util.concurrent.TimeUnit
+import org.springframework.beans.factory.annotation.Qualifier
+import org.apache.shiro.SecurityUtils
+import org.springframework.web.bind.annotation.RequestHeader
+import org.apache.shiro.authz.annotation.RequiresRoles
+
+/**
+ * 用户模块网络类
+ */
+ @RestController
+ @RequestMapping("/user")
+class UserController implements I_UserController {
+	@Qualifier("redisTemplate")
+	@Autowired
+	RedisTemplate redis;
+	
+	@Autowired
+	I_UserService userService;
+	
+	@RequestMapping("/login")
+	override login(String username, String password) {
+		var bool=userService.login(#{"username"->username,"password"->password});
+		if(bool){
+			var token=JwtUtil.sign(username,password); //生成令牌
+			//把令牌缓存到Redis中
+			redis.opsForHash.putAll(username,#{"token" -> token,"password" -> password});
+			redis.expire(username,JwtUtil.EXPIRE_TIME, TimeUnit.MILLISECONDS); //缓存令牌的过期时间
+			return new ResponseBean(200,"登录成功",bool,#{"token" -> token});
+		}else{
+			return new ResponseBean(200,"登录失败",bool,null);
+		}
+		
+	}
+	
+	@RequestMapping("/searchSummary")
+	@RequiresRoles("求职者")
+	override searchSummary(@RequestHeader("Authorization") String token) {
+		var username=JwtUtil.getUsername(token);
+		var map = userService.searchSummary(username);
+		return new ResponseBean(200,"查询成功",true,map);
+	}
+	
+	
+	@RequestMapping("/register")
+	override register(String username, String password, String email, int roleId) {
+		var bool=userService.register(#{"username"->username,"password"->password,"email"->email,"userRole"->roleId});
+		return new ResponseBean(200,"注册成功",true,bool);
+	}
+	
+	
+	@RequestMapping("/updatePassword")
+	override updatePassword(String username, String password) {
+		var map=#{
+			"username"->username,
+			"password"->password
+		};
+		var i=userService.updatePassword(map);
+		return new ResponseBean(200,"更改结果",true,i);
+	}
+	
+}

@@ -1,0 +1,7 @@
+package cn.tentact.nebula.recruit
+
+import java.util.Map
+
+interface I_RecruitDetailsService {
+	def Map RecruitDetails(int recruit_id);
+}

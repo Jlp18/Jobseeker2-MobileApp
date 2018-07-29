@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.tentact.nebula.db.dao.I_CompanyDao">
+	<insert id="insert" parameterType="Map">
+		INSERT INTO 
+			company(id,name,tel,website,scale,type)
+		VALUES(
+				NEXT VALUE FOR MYCATSEQ_COMPANY,
+				#{name},
+				#{tel},
+				#{website},
+				#{scale},
+				#{type}
+			);
+	</insert>
+	<select id="searchIdByName" parameterType="String" resultType="int">
+		SELECT id FROM company WHERE name=#{name}
+	</select>
+	
+	<select id="selectFromMysql" parameterType="int" resultType="Map">
+		SELECT
+			name,
+			scale,
+			type,
+			address,
+			mainwork
+		FROM
+			company
+		WHERE 
+			id=#{company_id}
+	</select>
+</mapper>

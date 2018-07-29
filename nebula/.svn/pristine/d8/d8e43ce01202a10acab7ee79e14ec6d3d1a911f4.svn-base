@@ -1,0 +1,30 @@
+package cn.tentact.nebula.resume
+
+import org.springframework.stereotype.Service
+import java.util.Map
+import org.springframework.beans.factory.annotation.Autowired
+import cn.tentact.nebula.db.dao.I_ResumeDao
+import cn.tentact.nebula.db.dao.I_RecruitResumeDao
+import org.springframework.transaction.annotation.Transactional
+
+@Service
+class ResumeService implements I_ResumeService {
+	@Autowired
+	I_ResumeDao resumeDao;
+	
+	@Autowired
+	I_RecruitResumeDao recruitResumeDao;
+	
+	@Transactional
+	override sendMyResume(Map map) {
+		var username=map.get("username") as String;
+		var resumeId=resumeDao.searchMyResumeId(username);  //查询我的简历id
+		if(resumeId==null){
+			return -1;
+		}
+		map.put("resumeId",resumeId);
+		var i=recruitResumeDao.add(map);
+		return i;
+	}
+	
+}

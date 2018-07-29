@@ -1,0 +1,10 @@
+package cn.tentact.nebula.resume
+
+import cn.tentact.nebula.web.ResponseBean
+
+interface I_ResumeController {
+	/**
+	 * 投递简历
+	 */
+	 def ResponseBean sendMyResume(String token,int recruitId);
+}

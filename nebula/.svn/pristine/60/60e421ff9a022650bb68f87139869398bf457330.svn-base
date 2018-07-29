@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.tentact.nebula.db.dao.I_RecruitResumeDao">
+	<select id="searchMyResumeCount" parameterType="String" resultType="long">
+		SELECT
+			COUNT(*)
+		FROM
+			`user` AS u
+		INNER JOIN resume AS r ON u.id = r.user_id
+		INNER JOIN recruit_resume AS rr ON r.ID = rr.resume_id
+		WHERE
+			u.username = #{username}
+	</select>
+	<insert id="add" parameterType="Map">
+		INSERT IGNORE INTO 
+			recruit_resume(id,recruit_id,resume_id)
+		VALUES(
+			NEXT VALUE FOR MYCATSEQ_RECRUIT_RESUME,
+			#{recruitId},
+			#{resumeId}
+		);
+	</insert>
+</mapper>

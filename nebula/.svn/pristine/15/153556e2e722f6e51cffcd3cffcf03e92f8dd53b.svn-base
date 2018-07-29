@@ -1,0 +1,69 @@
+server:
+  port: 8000
+  tomcat:
+    max-http-post-size: 500000000
+    max-http-header-size: 50000000
+#  ssl:
+#    key-store: classpath:keystore.p12
+#    key-store-password: ax105105
+#    key-store-type: PKCS12
+#    key-alias: tomcat
+    
+spring:
+  #数据源
+  datasource:
+    name: tentact
+    url: jdbc:mysql://127.0.0.1:8066/jobseeker?useUnicode=true&characterEncoding=UTF-8
+    username: admin
+    password: abc123456
+    driver-class-name: com.mysql.jdbc.Driver
+    #连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 5
+    initialSize: 5
+    maxWait: 60000
+    minIdle: 5
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 1
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+    
+  #Redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: abc123456
+    database: 1
+    timeout: 3000
+    
+  #Session
+  session:
+    store-type: redis
+  aop:
+    proxy-target-class: true
+    auto: true
+
+#  data:
+#    mongodb:
+#      host: 127.0.0.1
+#      port: 27017
+#      database: tentact
+#      option:
+#        max-connection-per-host: 20
+#        min-connection-per-host: 10
+#      authentication-database: admin
+#      username: admin
+#      password: abc123456
+      
+mybatis:
+  mapper-locations: classpath*:cn/tentact/nebula/db/mapping/*Mapper.xml
+  
+logging:
+  level:
+    root: error
+    cn.tentact.nebula.db: debug 

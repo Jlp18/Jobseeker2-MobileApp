@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.tentact.nebula.db.dao.I_RecruitDao">
+	<select id="searchCurrentRecruit" parameterType="int" resultType="Map">
+		SELECT
+			r.id,
+			r.job,
+			r.salary,
+			r.city,
+			r.education,
+			r.welfare,
+			DATE_FORMAT(r.date, "%Y/%m/%d") AS date,
+			c.`name`,
+			rr.id IS NOT NULL AS sended
+		FROM
+			recruit AS r
+		LEFT JOIN recruit_resume rr ON rr.recruit_id=r.id AND rr.resume_id=#{resumeId}
+		LEFT JOIN company AS c ON r.company_id = c.id
+		ORDER BY
+			r.date DESC
+		LIMIT 0,5;
+	</select>
+</mapper>

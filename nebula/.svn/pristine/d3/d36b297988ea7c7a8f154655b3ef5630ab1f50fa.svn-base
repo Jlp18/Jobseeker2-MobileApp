@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.tentact.nebula.db.dao.I_UserDao">
+	<select id="login" parameterType="Map" resultType="long">
+		SELECT
+			COUNT(*) AS count
+		FROM
+			user
+		WHERE
+			username = #{username}
+		AND 
+			PASSWORD = HEX(AES_ENCRYPT(#{password}, "jobseeker"))
+		AND 
+			locked = FALSE;
+	</select>
+	
+	<select id="searchId" parameterType="String" resultType="int">
+		SELECT id FROM user WHERE username=#{username}
+	</select>
+	
+	<select id="existIf" parameterType="String" resultType="long">
+		SELECT COUNT(*)
+		FROM 
+			user 
+		WHERE 
+			username=#{username}	
+	</select>
+	
+	<insert id="addUser" parameterType="Map">
+		INSERT INTO 
+			user(id,username,password,email,role_id,create_time,locked)
+		VALUES(
+				NEXT VALUE FOR MYCATSEQ_USER,
+				#{username},
+				HEX(AES_ENCRYPT(#{password}, "jobseeker")),
+				#{email},
+				#{userRole},
+				CURRENT_TIMESTAMP(),
+				0
+			);
+	</insert>
+	<insert id="addUserLevel">
+		INSERT INTO user_level(id,user_id,exp)
+		VALUES(
+				NEXT VALUE FOR MYCATSEQ_USER_LEVEL,
+				NEXT VALUE FOR MYCATSEQ_USER_LEVEL_USER_ID,
+				500
+			);
+	</insert>
+</mapper>

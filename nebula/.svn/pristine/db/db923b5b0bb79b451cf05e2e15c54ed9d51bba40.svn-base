@@ -1,0 +1,11 @@
+package cn.tentact.nebula.db.dao
+
+import org.apache.ibatis.annotations.Mapper
+
+@Mapper
+interface I_ResumeDao {
+	/**
+	 * 查询用户简历id
+	 */
+	def Integer searchMyResumeId(String username);
+}
