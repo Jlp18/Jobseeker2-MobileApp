@@ -7,5 +7,5 @@
 ![图片丢了](https://github.com/Jlp18/Jobseeker2-MobileApp/blob/master/screenCapture/Screenshot_2018-07-30-08-03-38-29.png)
 
 
-> ## forget password 
+		forget password 
 >> <img width="500" height="900" src="https://github.com/Jlp18/Jobseeker2-MobileApp/blob/master/screenCapture/Screenshot_2018-07-30-08-10-51-39.png"/>
