@@ -2,10 +2,10 @@
 
 > ## login
 > <div align=center><img width="300" height="550" src="https://github.com/Jlp18/Jobseeker2-MobileApp/blob/master/screenCapture/Screenshot_2018-07-30-08-03-29-45.png"/></div>
-> <br><br>
+ <br><br>
 
 > ## register
->> <div align=center><img width="300" height="550" src="https://github.com/Jlp18/Jobseeker2-MobileApp/blob/master/screenCapture/Screenshot_2018-07-30-08-03-38-29.png"/></div>
+> <div align=center><img width="300" height="550" src="https://github.com/Jlp18/Jobseeker2-MobileApp/blob/master/screenCapture/Screenshot_2018-07-30-08-03-38-29.png"/></div>
 
 
 
