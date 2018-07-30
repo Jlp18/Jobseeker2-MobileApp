@@ -8,4 +8,4 @@
 
 
 > ## forget password 
-<img width="500" height="900" src="https://github.com/Jlp18/Jobseeker2-MobileApp/blob/master/screenCapture/Screenshot_2018-07-30-08-10-51-39.png"/>
+>> <img width="500" height="900" src="https://github.com/Jlp18/Jobseeker2-MobileApp/blob/master/screenCapture/Screenshot_2018-07-30-08-10-51-39.png"/>
